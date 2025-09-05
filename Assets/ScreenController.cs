@@ -20,6 +20,8 @@ public class ScreenController : MonoBehaviour
     private float _tapTimer = 0f;
     private const float DOUBLE_TAP_TIME = 0.8f;
     private int _tapCount = 0;
+    private float _lastTapTime = -999f;
+    public float tapDebounce = 0.15f;
 
     void Update()
     {
@@ -41,6 +43,10 @@ public class ScreenController : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            // Debounce
+            if (Time.time - _lastTapTime < tapDebounce) return;
+            _lastTapTime = Time.time;
+
             _tapCount++;
             if (_tapCount == 1)
             {
@@ -95,12 +101,13 @@ public class ScreenController : MonoBehaviour
         currentState = screenState;
 
         for (int i = 0; i < Screens.Count; i++)
-        {
-            Screens[i].SetActive(i == (int)screenState);
-        }
+            Screens[i].SetActive(false);
+
+        if ((int)screenState < Screens.Count)
+            Screens[(int)screenState].SetActive(true);
+
 
         OnStateChanged?.Invoke(currentState);
 
-        Debug.Log("State changed to: " + currentState);
     }
 }
