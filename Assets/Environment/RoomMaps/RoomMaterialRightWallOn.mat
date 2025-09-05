@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RoomMaterialRightWallOn
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 2a60dfe898baf83429136c141d88930d, type: 3}
   m_Parent: {fileID: 2100000, guid: 3ba71d3298b003c45a200290dc855093, type: 2}
   m_ModifiedSerializedProperties: 8
   m_ValidKeywords: []
@@ -21,8 +21,7 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -48,7 +47,8 @@ Material:
     - _Smoothness: 0
     - _SpecularHighlights: 0
     - _WorkflowMode: 0
-    m_Colors: []
+    m_Colors:
+    - _AmbientColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &371121443342882144
 MonoBehaviour:

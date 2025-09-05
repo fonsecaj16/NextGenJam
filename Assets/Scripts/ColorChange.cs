@@ -31,6 +31,7 @@ public class ColorChange : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 dirLight.color = colors[i];
+                Debug.Log("Color" + colors[i]);
                 i++;
                 if (i == colors.Count)
                     i = 0;
