@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: 42196c5723898e748bf51332fee85b19
+  productGUID: 8a838b5c202827944aae99a01bf825b0
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: NextGenJam
+  productName: Test
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,12 +140,8 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.0
-  preloadedAssets:
-  - {fileID: 11400000, guid: f8a442de0c8906f4d9c00184993fc289, type: 2}
-  - {fileID: -4637038883354861042, guid: 68b8576ba099b294d90889251a4a15ba, type: 2}
-  - {fileID: 11400000, guid: 56a98106ce58f09459a9990007b50acb, type: 2}
-  - {fileID: 6482856677600133674, guid: 8b07288ba6be24e448175f41e3629239, type: 2}
+  bundleVersion: 0.1
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -166,8 +162,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.unity.template.mixedreality
-    Standalone: com.unity.template.mr
+    Android: com.unity.template.vr
+    Standalone: com.Unity-Technologies.VR-Template
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -255,7 +251,7 @@ PlayerSettings:
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
   clonedFromGUID: 14e3da668dfd3496fb0ecd9272fcff02
-  templatePackageId: com.unity.template.mixed-reality@1.1.2
+  templatePackageId: com.unity.template.vr@6.1.3
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -542,9 +538,6 @@ PlayerSettings:
   - m_BuildTarget: WebGLSupport
     m_APIs: 0b000000
     m_Automatic: 1
-  - m_BuildTarget: WindowsStandaloneSupport
-    m_APIs: 02000000
-    m_Automatic: 1
   m_BuildTargetVRSettings:
   - m_BuildTarget: Standalone
     m_Enabled: 0
@@ -829,14 +822,24 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
-    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
-    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
+    Android: USE_INPUT_SYSTEM_POSE_CONTROL;UNITY_POST_PROCESSING_STACK_V2;USE_STICK_CONTROL_THUMBSTICKS
+    CloudRendering: UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
+    Lumin: UNITY_POST_PROCESSING_STACK_V2
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2
+    PS4: UNITY_POST_PROCESSING_STACK_V2
+    PS5: UNITY_POST_PROCESSING_STACK_V2
+    Stadia: UNITY_POST_PROCESSING_STACK_V2
+    Standalone: USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;UNITY_POST_PROCESSING_STACK_V2;USE_STICK_CONTROL_THUMBSTICKS
+    WebGL: UNITY_POST_PROCESSING_STACK_V2
+    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_INPUT_SYSTEM_POSE_CONTROL;UNITY_POST_PROCESSING_STACK_V2;USE_STICK_CONTROL_THUMBSTICKS
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2
+    tvOS: UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-    Server: 1
     Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
@@ -847,21 +850,21 @@ PlayerSettings:
   useDeterministicCompilation: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
-  gcIncremental: 0
+  gcIncremental: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: NextGenJam
-  metroPackageVersion: 1.0.0.0
+  metroPackageName: Test
+  metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: NextGenJam
+  metroApplicationDescription: Test
   wsaImages: {}
-  metroTileShortName: com.unity.template.mr
+  metroTileShortName: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -929,10 +932,10 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: fe848a7f-1083-47fb-92d9-eed6c6d83514
+  cloudProjectId: 7a818a81-4e7d-4490-a19a-7356dc089cb0
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: NextGenJam
+  projectName: Test
   organizationId: unity_479fd9af6984e958d1fd
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
