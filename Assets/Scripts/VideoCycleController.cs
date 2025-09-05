@@ -90,15 +90,17 @@ public class VideoCycleController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!enableTriggerTap) return;
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            // Check layer mask
+            if (((1 << other.gameObject.layer) & triggerLayers) == 0) return;
 
-        // Check layer mask
-        if (((1 << other.gameObject.layer) & triggerLayers) == 0) return;
+            // Debounce
+            if (Time.time - _lastTapTime < tapDebounce) return;
+            _lastTapTime = Time.time;
 
-        // Debounce
-        if (Time.time - _lastTapTime < tapDebounce) return;
-        _lastTapTime = Time.time;
-
-        RegisterTap();
+            RegisterTap();
+        }
     }
 
     void PlayNow() => _vp.Play();
