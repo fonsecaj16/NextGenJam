@@ -11,11 +11,12 @@ public class ColorChange : MonoBehaviour
     private Color Yellow = new Color(0.8431f, 0.7529f, 0.2667f); // good for forest; natural light
     private List<Color> colors = new List<Color>();
     public int i = 1;
-    private float updateInterval = .5f;
+    private float updateInterval = .5f; // cap color change to max once per this interval, else it flickers on hold
     private float lastUpdateTime = 0f;
 
     void Start()
     {
+        // this is the order of the colors, perhaps the ground scenes can match this order
         colors.Add(White);
         colors.Add(Blue);
         colors.Add(Yellow);
