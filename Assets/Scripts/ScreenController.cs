@@ -17,47 +17,56 @@ public class ScreenController : MonoBehaviour
     [SerializeField] private ScreenState currentState = ScreenState.Off;
     [SerializeField] private List<GameObject> Screens;
 
-    private float _tapTimer = 0f;
-    private const float DOUBLE_TAP_TIME = 0.8f;
     private int _tapCount = 0;
     private float _lastTapTime = -999f;
     public float tapDebounce = 0.15f;
+    private const float DOUBLE_TAP_TIME = 0.8f;
 
-    void Update()
-    {
-        // Countdown timer if a tap started
-        if (_tapCount > 0)
-        {
-            _tapTimer += Time.deltaTime;
-
-            if (_tapTimer > DOUBLE_TAP_TIME)
-            {
-                // Time expired → treat it as a single tap
-                HandleSingleTap();
-                ResetTap();
-            }
-        }
-    }
+    private Coroutine _tapRoutine;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            // Debounce
-            if (Time.time - _lastTapTime < tapDebounce) return;
-            _lastTapTime = Time.time;
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
 
-            _tapCount++;
-            if (_tapCount == 1)
-            {
-                _tapTimer = 0f; // start waiting for possible double tap
-            }
-            else if (_tapCount == 2 && _tapTimer <= DOUBLE_TAP_TIME)
+        // Debounce to avoid spam
+        if (Time.time - _lastTapTime < tapDebounce) return;
+        _lastTapTime = Time.time;
+
+        _tapCount++;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+
+        if (_tapCount == 1)
+        {
+            // Start waiting for possible double tap
+            if (_tapRoutine != null) StopCoroutine(_tapRoutine);
+            _tapRoutine = StartCoroutine(SingleOrDoubleTap());
+        }
+    }
+
+    private IEnumerator SingleOrDoubleTap()
+    {
+        float timer = 0f;
+
+        while (timer < DOUBLE_TAP_TIME)
+        {
+            if (_tapCount == 2)
             {
                 HandleDoubleTap();
                 ResetTap();
+                yield break;
             }
+
+            timer += Time.deltaTime;
+            yield return null;
         }
+
+        // No second tap → it's a single
+        HandleSingleTap();
+        ResetTap();
     }
 
     private void HandleSingleTap()
@@ -93,7 +102,11 @@ public class ScreenController : MonoBehaviour
     private void ResetTap()
     {
         _tapCount = 0;
-        _tapTimer = 0f;
+        if (_tapRoutine != null)
+        {
+            StopCoroutine(_tapRoutine);
+            _tapRoutine = null;
+        }
     }
 
     private void ChangeState(ScreenState screenState)
@@ -106,8 +119,6 @@ public class ScreenController : MonoBehaviour
         if ((int)screenState < Screens.Count)
             Screens[(int)screenState].SetActive(true);
 
-
         OnStateChanged?.Invoke(currentState);
-
     }
 }
