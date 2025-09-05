@@ -95,6 +95,8 @@ public class VideoCycleController : MonoBehaviour
             if (Time.time - _lastTapTime < tapDebounce) return;
             _lastTapTime = Time.time;
 
+            ColorChange.CycleRequested?.Invoke();
+            Debug.Log("Color Change Triggered");
             RegisterTap();
         }
     }
